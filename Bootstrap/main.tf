@@ -1,7 +1,10 @@
-module "vertex_ai_service_account" {
-  source = "../modules/vertex-ai-service-account"
+module "service_accounts" {
+  source = "../modules/service-account"
 
-  project_id                  = var.project_id
-  service_account_name        = var.service_account_name
-  service_account_display_name = var.service_account_display_name
+  for_each = var.service_accounts
+
+  project_id   = each.value.project_id
+  account_id   = each.value.account_id
+  display_name = each.value.display_name
+  roles        = each.value.roles
 }

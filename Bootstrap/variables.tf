@@ -1,14 +1,10 @@
-variable "project_id" {
-  description = "GCP project ID"
-  type        = string
-}
+variable "service_accounts" {
+  description = "Service accounts to create across one or multiple GCP projects"
 
-variable "service_account_name" {
-  description = "Name of the service account"
-  type        = string
-}
-
-variable "service_account_display_name" {
-  description = "Display name of the service account"
-  type        = string
+  type = map(object({
+    project_id   = string
+    account_id   = string
+    display_name = string
+    roles        = list(string)
+  }))
 }
